@@ -4,8 +4,10 @@
 ## Next Target
  * Add 'Updater' Option
  * Add 'Uninstall' Option
+ * Add 'Default Language' Option
  * Improvement to movie search
  * Will be added TV Series search
+ 
 
 
 ## Changelog
