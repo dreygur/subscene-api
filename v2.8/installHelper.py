@@ -60,7 +60,7 @@ def install(e=''):
             contextAdderForVideoFiles(e, 'Download Subtitle', c, 'Download Subtitle')'''
         os.system('md "{}"'.format(rd2))
         os.system('copy "{}" "{}\\" /y'.format(name, rd2))
-        open(r'C:\Users\Xayed\AppData\Local\Temp\infoFileDT', 'w').write(str(datetime.now()).split()[0])
+        open(r'C:\Windows\Temp\infoFileDT', 'w').write(str(datetime.now()).split()[0])
         for e in extList:
                 contextAdderForVideoFiles(e, 'Download Subtitle', rd1, 'Download Subtitle')
         if 'downloaderAndInstallerNewVersion.bat' in os.listdir():
