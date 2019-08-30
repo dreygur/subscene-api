@@ -4,6 +4,7 @@ from zipfile import ZipFile
 from time import sleep
 from sys import argv
 from datetime import datetime
+from json import loads
 
 
 def resource_path(relative_path):
@@ -60,11 +61,11 @@ class SubScene(wx.Frame):
         self.version = '2.8'
         self.install()
         try:
-            if not (open(r'C:\Users\Xayed\AppData\Local\Temp\infoFileDT', 'r').read())==str(datetime.now()).split()[0]:
+            if not (open(r'C:\Windows\Temp\infoFileDT', 'r').read())==str(datetime.now()).split()[0]:
                 self.updateChecker('5742')
         except Exception as e:
             print('Line 66: ' + str(e))
-            open(r'C:\Users\Xayed\AppData\Local\Temp\infoFileDT', 'w').write('--')
+            open(r'C:\Windows\Temp\infoFileDT', 'w').write('--')
             self.updateChecker('5742')
         if len(argv)==1:
             wx.Frame.__init__(self, parent, id, 'Subtitle Finder V_{}'.format(self.version), size=(350, 280))
@@ -140,8 +141,7 @@ class SubScene(wx.Frame):
 
     def updateChecker(self, e):
         uA={'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
-        r=get('https://sourceforge.net/projects/subtitle-finder/files/', headers=uA).text
-        newName=BeautifulSoup(r, 'html.parser').find('a', {'href': '/projects/subtitle-finder/files/latest/download'})['title'].split(':')[0][1:]
+        newName=get('https://sourceforge.net/projects/subtitle-finder/best_release.json', headers=uA).json()['release']['filename'][1:]
         print(newName)
         try:
             l=listdir(r"C:\Program Files\Subtitle Finder")
@@ -170,7 +170,7 @@ class SubScene(wx.Frame):
                 wx.CallLater(3000, mb.Destroy)
                 mb.ShowModal()
             else:
-                open(r'C:\Users\Xayed\AppData\Local\Temp\infoFileDT', 'w').write(str(datetime.now()).split()[0])
+                open(r'C:\Windows\Temp\infoFileDT', 'w').write(str(datetime.now()).split()[0])
 
 
 
