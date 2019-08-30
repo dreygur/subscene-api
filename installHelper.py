@@ -1,5 +1,6 @@
 import winreg, os, time, ctypes, sys
 from requests import get
+from datetime import datetime
 
 
 def contextAdderForVideoFiles(fileType, regestryTitle, command, title):
@@ -43,7 +44,7 @@ def run_as_admin(argv=None, debug=False):
 
 
 def install(e=''):
-    time.sleep(3)
+    time.sleep(2)
     extList = ['.mkv', '.mp4', '.3gp', '.ogg', '.wmv', '.webm', '.flv', '.avi']
 
     c="\"C:\\Users\\Xayed\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe\" \"D:\\Pr0grammming\\Pyth0n\\ScrapingAPI\\SubScene\\ExecutableProject\\main.py\" \"%\"C:\\Users\\Xayed\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe\" \"D:\\Pr0grammming\\Pyth0n\\ScrapingAPI\\SubScene\\ExecutableProject\\main.py\" \"%1\"\""
@@ -52,22 +53,26 @@ def install(e=''):
     
 
     if run_as_admin() is True:
-        name='Subtitle_Finder_V2.7.exe'
+        name='Subtitle_Finder_V2.8.exe'
         rd1 = '\"C:\\Program Files\\Subtitle Finder\\{}\" \"%1\"\"'.format(name)
         rd2="C:\\Program Files\\Subtitle Finder"
         '''for e in extList:
             contextAdderForVideoFiles(e, 'Download Subtitle', c, 'Download Subtitle')'''
         os.system('md "{}"'.format(rd2))
+        os.system('copy "{}" "{}\\" /y'.format(name, rd2))
+        open(r'C:\Windows\Temp\infoFileDT', 'w').write(str(datetime.now()).split()[0])
+        for e in extList:
+                contextAdderForVideoFiles(e, 'Download Subtitle', rd1, 'Download Subtitle')
+        if 'downloaderAndInstallerNewVersion.bat' in os.listdir():
+            os.remove('downloaderAndInstallerNewVersion.bat')
+        ld=os.listdir(r"C:\Program Files\Subtitle Finder")
+        for d in ld:
+            if d.startswith('Subtitle_Finder_V') and d != name:
+                os.remove(r"C:\Program Files\Subtitle Finder\{}".format(d))
         ld=os.listdir()
-        for l in ld:
-            if name==l:
-                os.system('copy "{}" "{}\\" /y'.format(l, rd2))
-                break
-        ld=os.listdir()
-        for l in ld:
-            if name==l:
-                for e in extList:
-                    contextAdderForVideoFiles(e, 'Download Subtitle', rd1, 'Download Subtitle')
+        for d in ld:
+            if d.startswith('Subtitle_Finder_V') and d != name:
+                os.remove(d)
         print('Installation Done! Enjoy!')
         return 1
     else:
