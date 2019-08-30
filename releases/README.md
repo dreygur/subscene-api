@@ -11,6 +11,14 @@
 
 ## Changelog
 
+### Version 2.9 (30-08-2019)
+ * Improved Name Finding Algorithm
+ * Fixed "Error" message from software
+ * Fixed Unzipping Error
+ * Fixed Rename Error
+ * Fixed Folder Name detect problems
+
+
 ### Version 2.8 (30-08-2019)
  * Added 'Check For Updates' Option
  * Added regular update check
