@@ -6,10 +6,15 @@
  * Add 'Default Language' Option
  * Improvement to movie search
  * Will be added TV Series search
- 
 
 
 ## Changelog
+
+
+### Version 3.0 (31-08-2019)
+ * Compleately New Designed UI
+ * Bug Fixes
+
 
 ### Version 2.9 (30-08-2019)
  * Improved Name Finding Algorithm
