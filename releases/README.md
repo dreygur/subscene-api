@@ -4,11 +4,17 @@
 ## Next Target
  * Add 'Uninstall' Option
  * Add 'Default Language' Option
+ * Add 'Subtitle Find For TV-Series' Option
  * Improvement to movie search
- * Will be added TV Series search
 
 
 ## Changelog
+
+
+### Version 3.2 (31-08-2019)
+ * Improved UI
+ * Changed Default Directory to Select Directory and Movies
+ * Bugs Fixes
 
 
 ### Version 3.0 (31-08-2019)
