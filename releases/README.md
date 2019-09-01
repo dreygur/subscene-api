@@ -9,6 +9,12 @@
 ## Changelog
 
 
+### Version 4.9 (02-09-2019)
+ * Improved in About Section
+ * Added Tutorial Link
+ * Fixed Language Related Bugs and many more!
+
+
 ### Version 4.3 (01-09-2019)
  * Improved UI
  * Moved Language Selection to Context-Menu(Right Click)
