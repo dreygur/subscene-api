@@ -2,13 +2,24 @@
 
 
 ## Next Target
- * Add 'Uninstall' Option
- * Add 'Default Language' Option
  * Add 'Subtitle Find For TV-Series' Option
  * Improvement to movie search
 
 
 ## Changelog
+
+
+### Version 4.3 (01-09-2019)
+ * Improved UI
+ * Moved Language Selection to Context-Menu(Right Click)
+ * Improved Searching
+ * Bug Fixes
+
+
+### Version 3.8 (01-09-2019)
+ * Added Default Language Section
+ * Improved Data Extracton Algorithm
+ * Bug fixes and underhood improvements
 
 
 ### Version 3.2 (31-08-2019)
