@@ -9,6 +9,13 @@
 ## Changelog
 
 
+### Version 5.0 (05-09-2019)
+  * Fixed network error
+  * Fixed crash when open without Network Connection
+  * Fixed Updater
+  * Fixed other bugs and improved algorithms
+
+
 ### Version 4.9 (02-09-2019)
  * Improved in About Section
  * Added Tutorial Link
