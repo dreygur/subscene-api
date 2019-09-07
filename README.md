@@ -8,16 +8,16 @@ Usage:
 from subscene.SubScene import SubScene
 
 sub = SubScene() # Initialize the api Class
-    detail = {
-        'name': 'Hello',
-        'year': '2008'
+detail = {
+    'name': 'Hello',
+    'year': '2008'
     }
-    link = sub.getDetail(detail) # Available Subtitles
-    print(link)
-    links = sub.getSubLink(link) # Link to Specific Subtitle
-    print(links)
-    down = sub.getDownLink(links[0]) # DownLoad link for Specific Language
-    print(down)
+link = sub.getDetail(detail) # Available Subtitles
+print(link)
+links = sub.getSubLink(link) # Link to Specific Subtitle
+print(links)
+down = sub.getDownLink(links[0]) # DownLoad link for Specific Language
+print(down)
 ```
 
 Making with :heart: by [Rakibul Yeasin](https://github.com/dreygur) and [Abdullah Zayed](https://github.com/xaadu)
