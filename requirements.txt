@@ -1,1 +1,2 @@
 beautifulsoup4
+tqdm==2.2.3

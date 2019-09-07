@@ -1,6 +1,6 @@
 import sys
 import time
-from requests import get, post
+import requests
 from bs4 import BeautifulSoup
 
 # Prohbit system from writing byte-codes
@@ -41,10 +41,10 @@ class SubScene:
                 # We have got detail as a list
                 'query': detail['name']
             }
-            
+
             while True:
                 # Loop till we don't get any answer from server
-                search = post(self.link + '/subtitles/searchbytitle', data=data)
+                search = requests.post(self.link + '/subtitles/searchbytitle', data=data)
                 # print(search.status_code)
                 if search.status_code != 200:
                     time.sleep(3)
@@ -61,10 +61,10 @@ class SubScene:
                 if h2[0]['class'][0].title() == 'Exact': # Use the links under 'Exact' heading
                     if len(ul[0].findAll('a')) > 1:
                         for a in ul[0].findAll('a'):
-                            links.append(self.link+a.get('href'))
+                            links.append(self.link + a['href'])
                             if detail['year'] != '' and detail['year'] in a.text:
                                 return links[0]
-                        
+
             except Exception as e:
                 # print(e)
                 return e
@@ -82,7 +82,10 @@ class SubScene:
         * Returns a list of urls
         """
 
-        html = get(link).text
+        try:
+            html = requests.get(link).text
+        except requests.exceptions.MissingSchema:
+            return 'Subtitle not Found. Try Changing the Name or year or language or both'
         soup = BeautifulSoup(html, 'html.parser')
         languages = soup.find('tbody').findAll('a')
         langs, subs, links = [], [], []
@@ -97,7 +100,7 @@ class SubScene:
                     links.append(self.link + language['href'])
             except Exception:
                 pass
-        
+
         return links
 
         # for l, s, li in zip(langs, subs, links):
@@ -105,7 +108,7 @@ class SubScene:
         #         # print(f'Subtitle name: {s}\nLink: {links}')
         #         return links
         # return None
-    
+
 
     def getDownLink(self, link):
 
@@ -114,7 +117,11 @@ class SubScene:
         * Returns the url as a string
         """
 
-        html = get(link).text
+        try:
+            html = requests.get(link).text
+        except requests.exceptions.MissingSchema:
+            return 'Subtitle not Found. Try Changing the Name or year or language or both'
+
         soup = BeautifulSoup(html, 'html.parser')
         div = soup.find('div', {'class': 'download'})
         return self.link + div.a['href']
@@ -122,7 +129,7 @@ class SubScene:
 
 # ************************************* Test *************************************
 # ================================================================================
-if __name__ == '__main__':    
+if __name__ == '__main__':
     sub = SubScene() # Initialize the api Class
     detail = {
         'name': 'Hello',

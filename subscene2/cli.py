@@ -1,5 +1,6 @@
 import sys
-from SubScene import SubScene
+from tqdm import tqdm
+from .SubScene import SubScene
 
 def help():
     print("""
@@ -17,12 +18,13 @@ def run(name, year, lang):
         'name': name,
         'year': year
     }
-    link = sub.getDetail(detail)  # Available Subtitles
-    # print(link)
-    links = sub.getSubLink(link, lang)  # Link to Specific Subtitle
-    # print(links)
-    down = sub.getDownLink(links[0])  # DownLoad link for Specific Language
-    print(down)
+    for _ in tqdm(range(1)):
+        link = sub.getDetail(detail)  # Available Subtitles
+        # print(link)
+        links = sub.getSubLink(link, lang)  # Link to Specific Subtitle
+        # print(links)
+        down = sub.getDownLink(links[0])  # DownLoad link for Specific Language
+        print(down)
 
 def main():
     if len(sys.argv) < 5 or sys.argv[1][1] == 'h':

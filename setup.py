@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name="subscene2",
-    version="0.0.1",
+    version="1.0.2",
     author="Rakibul Yeasin",
     author_email="ryeasin03@gmail.com",
     description="A Python wrapper for SubScene",
@@ -22,4 +22,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    entry_points={'console_scripts': ['subscene2 = subscene2.cli:main']},
 )
