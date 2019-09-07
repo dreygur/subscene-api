@@ -48,11 +48,11 @@ class SubScene:
                                 return links[0]
                         
             except Exception as e:
-                print(e)
+                # print(e)
                 return None
 
         except Exception as e:
-            print(e)
+            # print(e)
             return None
 
     def getSubLink(self, link):
@@ -61,21 +61,21 @@ class SubScene:
 
         html = get(link).text
         soup = BeautifulSoup(html, 'html.parser')
-        l = soup.find('tbody').findAll('a')
-        langs,subs,links=[],[],[]
+        languages = soup.find('tbody').findAll('a')
+        langs, subs, links = [], [], []
 
-        for a in l:
-            al = a.findAll('span')
+        for i in languages:
+            al = i.findAll('span')
             try:
                 la = al[0].text.strip()
                 if la == self.lang or la == 'English':
                     langs.append(la)
                     subs.append(al[1].text.strip())
-                    links.append(self.link+a['href'])
+                    links.append(self.link + i['href'])
             except Exception:
                 pass
         
-        for l,s,li in zip(langs, subs, links):
+        for l, s, li in zip(langs, subs, links):
                 if l == self.lang: # and 'positive-icon' in a.span['class']
                     # print(f'Subtitle name: {s}\nLink: {links}')
                     return links
@@ -83,10 +83,12 @@ class SubScene:
     
 
     def getDownLink(self, link):
-        html=get(link).text
+        # Gets the Direct Download Link from SubScene
+
+        html = get(link).text
         soup = BeautifulSoup(html, 'html.parser')
-        s = soup.find('div', {'class': 'download'})
-        return self.link + s.a['href']
+        div = soup.find('div', {'class': 'download'})
+        return self.link + div.a['href']
 
 # sub = SubScene() # Initialize the api Class
 # detail = {
