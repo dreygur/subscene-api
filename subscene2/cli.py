@@ -11,7 +11,7 @@ def help():
         -l or --lang | Language of desired subtitle
     """)
 
-def main(name, year, lang):
+def run(name, year, lang):
     sub = SubScene()  # Initialize the api Class
     detail = {
         'name': name,
@@ -24,7 +24,7 @@ def main(name, year, lang):
     down = sub.getDownLink(links[0])  # DownLoad link for Specific Language
     print(down)
 
-if __name__ == '__main__':
+def main():
     if len(sys.argv) < 5 or sys.argv[1][1] == 'h':
         help()
         sys.exit()
@@ -39,4 +39,8 @@ if __name__ == '__main__':
         else:
             lang = 'English'
 
-        main(name, year, lang)
+        run(name, year, lang)
+
+
+if __name__ == '__main__':
+    main()
