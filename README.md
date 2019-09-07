@@ -1,9 +1,21 @@
-# This is development brach of Subtitle-Finder
+# Python wraper for SubScene(.)com
 
-We are working on developing an api for Subscene(dot)com. And making the code more managable.
-Don't use this branch for production use. It will always break.
+We are working on developing an api for Subscene(.)com. And making the code more managable.
+Before using in production please be sure it works well.
 
-Usage:
+### Usage:
+
+CLI:
+```
+Use: -n 'name' -y 'year' -l 'language' [Optional]
+    Usage:
+        -h or --help | Show this help message
+        -n or --name | Name of the movie/media
+        -y or --year | Year of release
+        -l or --lang | Language of desired subtitle
+```
+
+Script:
 ```python3
 from subscene.SubScene import SubScene
 
