@@ -1,6 +1,6 @@
 import sys
 from tqdm import tqdm
-from .SubScene import SubScene
+from SubScene import SubScene
 
 def help():
     print("""
