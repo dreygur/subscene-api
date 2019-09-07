@@ -7,16 +7,34 @@ from bs4 import BeautifulSoup
 sys.dont_write_bytecode = True
 
 class SubScene:
-    # Subscene api
+    """
+    SubScene api
+    Methods:
+        * getDetail()
+            Gets Detailed Information and Link to the subtitle
+        * getSubLink()
+            Loads the Subtitle Link
+        * getDownLink()
+            Generate download link upon users language choice
+    """
 
     def __init__(self):
+
+        """
+        Class Initialization
+        Also some defaults values are set.
+        You can change them if you want
+        """
         self.name = __name__
         self.link = 'https://subscene.com'
         self.lang = 'English'
 
     def getDetail(self, detail):
-        # Search for a specific movie
-        # and scrape intended one from the list
+
+        """
+        Search's for a specific movie/media
+        and scrape intended one from the list
+        """
 
         try:
             data = {
@@ -49,53 +67,68 @@ class SubScene:
                         
             except Exception as e:
                 # print(e)
-                return None
+                return e
 
         except Exception as e:
             # print(e)
-            return None
+            return e
 
-    def getSubLink(self, link):
-        # Get Direct Link for Downloading Subtitle
-        # Link is the Search Results page link
+    def getSubLink(self, link, lang='English'):
+
+        """
+        Get Direct Link for Downloading Subtitle
+        Link is the Search Results page link
+        You can pass your desired Language
+        * Returns a list of urls
+        """
 
         html = get(link).text
         soup = BeautifulSoup(html, 'html.parser')
         languages = soup.find('tbody').findAll('a')
         langs, subs, links = [], [], []
 
-        for i in languages:
-            al = i.findAll('span')
+        for language in languages:
+            all_lang = language.findAll('span')
             try:
-                la = al[0].text.strip()
-                if la == self.lang or la == 'English':
-                    langs.append(la)
-                    subs.append(al[1].text.strip())
-                    links.append(self.link + i['href'])
+                lan = all_lang[0].text.strip()
+                if lan == self.lang or lan == lang:
+                    langs.append(lan)
+                    subs.append(all_lang[1].text.strip())
+                    links.append(self.link + language['href'])
             except Exception:
                 pass
         
-        for l, s, li in zip(langs, subs, links):
-                if l == self.lang: # and 'positive-icon' in a.span['class']
-                    # print(f'Subtitle name: {s}\nLink: {links}')
-                    return links
+        return links
+
+        # for l, s, li in zip(langs, subs, links):
+        #     if l == self.lang: # and 'positive-icon' in a.span['class']
+        #         # print(f'Subtitle name: {s}\nLink: {links}')
+        #         return links
         # return None
     
 
     def getDownLink(self, link):
-        # Gets the Direct Download Link from SubScene
+
+        """
+        Gets the Direct Download Link from SubScene
+        * Returns the url as a string
+        """
 
         html = get(link).text
         soup = BeautifulSoup(html, 'html.parser')
         div = soup.find('div', {'class': 'download'})
         return self.link + div.a['href']
 
-# sub = SubScene() # Initialize the api Class
-# detail = {
-#     'name': 'Hello',
-#     'year': '2008'
-# }
-# link = sub.getDetail(detail)
-# links = sub.getSubLink(link)
-# down = sub.getDownLink(links[0])
-# print(down)
+
+# ************************************* Test *************************************
+# ================================================================================
+if __name__ == '__main__':    
+    sub = SubScene() # Initialize the api Class
+    detail = {
+        'name': 'Hello',
+        'year': '2008'
+    }
+    link = sub.getDetail(detail)
+    links = sub.getSubLink(link)
+    down = sub.getDownLink(links[0])
+    print(down)
