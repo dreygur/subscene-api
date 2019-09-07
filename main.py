@@ -20,5 +20,5 @@ def main():
     down = sub.getDownLink(links[0]) # DownLoad link for Specific Language
     print(down)
 
-if __name__ == '__main __':
+if __name__ == '__main__':
     main()
