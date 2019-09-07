@@ -6,7 +6,7 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setuptools.setup(
-    name="subscene-api2",
+    name="subscene2",
     version="0.0.1",
     author="Rakibul Yeasin",
     author_email="ryeasin03@gmail.com",
@@ -15,7 +15,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/dreygur/subscene-api",
     install_requires=requirements,
-    packages=setuptools.find_packages(),
+    packages=["subscene2"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
