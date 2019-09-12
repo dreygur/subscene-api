@@ -17,7 +17,7 @@ Use: -n 'name' -y 'year' -l 'language' [Optional]
 
 Script:
 ```python3
-from subscene.SubScene import SubScene
+from subscene2.SubScene import SubScene
 
 sub = SubScene() # Initialize the api Class
 detail = {
