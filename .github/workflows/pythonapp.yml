@@ -1,10 +1,10 @@
 name: Python application
 
 on: [push]
-
-branches:
-  - master
-  - development
+  push:
+    branches:
+      - master
+      - development
 
 jobs:
   build:
