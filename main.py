@@ -1,7 +1,7 @@
 import sys
 
 # Custom Modules
-from api.SubScene import SubScene
+from subscene2.SubScene import SubScene
 
 # Prohbit system from writing byte-codes
 sys.dont_write_bytecode = True
