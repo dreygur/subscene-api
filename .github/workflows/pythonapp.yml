@@ -2,6 +2,10 @@ name: Python application
 
 on: [push]
 
+branches:
+  - master
+  - development
+
 jobs:
   build:
 
@@ -19,3 +23,4 @@ jobs:
         pip install -r requirements.txt
     - name: Runs the script to test
       run: python3 main.py
+      shell: bash
