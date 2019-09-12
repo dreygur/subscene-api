@@ -1,2 +1,2 @@
-beautifulsoup4
+beautifulsoup4==4.8.0
 tqdm==2.2.3
