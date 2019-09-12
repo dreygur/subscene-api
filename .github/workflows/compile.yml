@@ -1,7 +1,15 @@
 name: Compile the Package and upload to PYPI
-on:
-  push:
-    uses: pypa/gh-action-pypi-publish@master
-    with:
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Publish package
+      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@master
+      with:
         user: __token__
         password: ${{ secrets.pypi_password }}
