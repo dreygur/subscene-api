@@ -1,4 +1,5 @@
 import sys
+import requests
 from tqdm import tqdm
 from subscene2.SubScene import SubScene
 
@@ -18,13 +19,28 @@ def run(name, year, lang):
         'name': name,
         'year': year
     }
-    for _ in tqdm(range(1)):
-        link = sub.getDetail(detail)  # Available Subtitles
-        # print(link)
-        links = sub.getSubLink(link, lang)  # Link to Specific Subtitle
-        # print(links)
-        down = sub.getDownLink(links[0])  # DownLoad link for Specific Language
-        print(down)
+
+    link = sub.getDetail(detail)  # Available Subtitles
+    # print(link)
+    links = sub.getSubLink(link, lang)  # Link to Specific Subtitle
+    # print(links)
+    down = sub.getDownLink(links[0])  # DownLoad link for Specific Language
+    # read 1024 bytes every time 
+    buffer_size = 1024
+    # download the body of response by chunk, not immediately
+    res = requests.get(down, stream=True)
+    # get the total file size
+    file_size = int(response.headers.get("Content-Length", 0))
+    # get the file name
+    filename = url.split("/")[-1]
+    print(down)
+    progress = tqdm(res.iter_content(buffer_size), f"Downloading {filename}", total=file_size, unit="B", unit_scale=True, unit_divisor=1024)
+    with open(filename, "wb") as f:
+        for data in progress:
+            # write data read to the file
+            f.write(data)
+            # update the progress bar manually
+            progress.update(len(data))
 
 def main():
     if len(sys.argv) < 5 or sys.argv[1][1] == 'h':
