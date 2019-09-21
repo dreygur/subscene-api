@@ -34,7 +34,7 @@ def run(name, year, lang):
     # get the file name
     filename = url.split("/")[-1]
     print(down)
-    progress = tqdm(res.iter_content(buffer_size), f"Downloading {filename}", total=file_size, unit="B", unit_scale=True, unit_divisor=1024)
+    progress = tqdm(res.iter_content(buffer_size), f"Downloading {filename}", total=file_size, unit="B", unit_scale=True)
     with open(filename, "wb") as f:
         for data in progress:
             # write data read to the file
