@@ -30,7 +30,7 @@ def run(name, year, lang):
     # download the body of response by chunk, not immediately
     res = requests.get(down, stream=True)
     # get the total file size
-    file_size = int(response.headers.get("Content-Length", 0))
+    file_size = int(res.headers.get("Content-Length", 0))
     # get the file name
     filename = url.split("/")[-1]
     print(down)
