@@ -1,7 +1,7 @@
 import sys
 import requests
 from tqdm import tqdm
-from subscene2.SubScene import SubScene
+from subscene2.api import SubScene
 
 def help():
     print("""

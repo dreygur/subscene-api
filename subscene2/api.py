@@ -3,7 +3,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
-# Prohbit system from writing byte-codes
+# Prohibit system from writing byte-codes
 sys.dont_write_bytecode = True
 
 class SubScene:
@@ -74,12 +74,17 @@ class SubScene:
             return e
 
     def getSubLink(self, link, lang='English'):
-
         """
         Get Direct Link for Downloading Subtitle
         Link is the Search Results page link
         You can pass your desired Language
-        * Returns a list of urls
+
+        Args:
+            link: link of subtitle
+            lang: desired language, default 'English'
+        
+        Returns:
+            Returns a list of urls
         """
 
         try:
@@ -114,7 +119,12 @@ class SubScene:
 
         """
         Gets the Direct Download Link from SubScene
-        * Returns the url as a string
+
+        Args:
+            link: link of subtitle
+        
+        Returns:
+            the url as a string
         """
 
         try:
@@ -125,17 +135,3 @@ class SubScene:
         soup = BeautifulSoup(html, 'html.parser')
         div = soup.find('div', {'class': 'download'})
         return self.link + div.a['href']
-
-
-# ************************************* Test *************************************
-# ================================================================================
-if __name__ == '__main__':
-    sub = SubScene() # Initialize the api Class
-    detail = {
-        'name': 'Hello',
-        'year': '2008'
-    }
-    link = sub.getDetail(detail)
-    links = sub.getSubLink(link)
-    down = sub.getDownLink(links[0])
-    print(down)
